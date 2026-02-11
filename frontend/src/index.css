@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 30% 97%;
+    --foreground: 30 12% 15%;
+
+    --card: 40 25% 95%;
+    --card-foreground: 30 12% 15%;
+
+    --popover: 40 25% 98%;
+    --popover-foreground: 30 12% 15%;
+
+    --primary: 35 32% 38%;
+    --primary-foreground: 40 30% 97%;
+
+    --secondary: 40 20% 88%;
+    --secondary-foreground: 30 12% 20%;
+
+    --muted: 40 15% 90%;
+    --muted-foreground: 30 8% 45%;
+
+    --accent: 40 25% 85%;
+    --accent-foreground: 30 12% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 35 15% 85%;
+    --input: 35 15% 85%;
+    --ring: 35 32% 38%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif tracking-tight;
+  }
+}
+
+@layer components {
+  /* Luxury button styles */
+  .btn-luxury {
+    @apply px-8 py-3 border border-sand-900 text-sand-900 uppercase tracking-[0.2em] text-sm font-medium 
+           transition-all duration-300 hover:bg-sand-900 hover:text-white;
+  }
+
+  .btn-luxury-filled {
+    @apply px-8 py-3 bg-sand-900 text-white uppercase tracking-[0.2em] text-sm font-medium 
+           transition-all duration-300 hover:bg-sand-800;
+  }
+
+  /* Section styles */
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .container-luxury {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Text styles */
+  .heading-luxury {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-sand-900 tracking-tight;
+  }
+
+  .subheading-luxury {
+    @apply text-sm uppercase tracking-[0.2em] text-sand-600 font-medium;
+  }
+
+  /* Card hover effect */
+  .card-luxury {
+    @apply bg-white border border-sand-200 transition-all duration-300 hover:shadow-lg hover:border-sand-300;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Custom scrollbar for luxury feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f0e8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4ad8d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a6855d;
+}
