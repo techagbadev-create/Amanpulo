@@ -23,6 +23,7 @@ A full-stack MERN reservation system featuring a premium booking experience with
 ## Tech Stack
 
 ### Frontend
+
 - **React 19** + **Vite** - Modern build tooling
 - **Tailwind CSS** - Custom sand/gold luxury palette
 - **Zustand** - Lightweight state management
@@ -33,6 +34,7 @@ A full-stack MERN reservation system featuring a premium booking experience with
 - **Sonner** - Toast notifications
 
 ### Backend
+
 - **Node.js + Express** - REST API server
 - **MongoDB + Mongoose** - Database & ODM
 - **JWT** - Admin authentication
@@ -42,6 +44,7 @@ A full-stack MERN reservation system featuring a premium booking experience with
 ## Features
 
 ### 🏨 Guest Features
+
 - Browse luxury villas and casitas with stunning imagery
 - Real-time availability checking
 - Interactive date picker with calendar
@@ -52,6 +55,7 @@ A full-stack MERN reservation system featuring a premium booking experience with
 - Smartsupp live chat support
 
 ### 👑 Admin Features
+
 - Secure JWT-based authentication
 - Dashboard with booking analytics
 - Complete room management (CRUD)
@@ -89,6 +93,7 @@ Amanpulo/
 ## Quick Start
 
 ### Prerequisites
+
 - Node.js v18+
 - MongoDB (local or Atlas)
 - npm or yarn
@@ -109,6 +114,7 @@ cd ../frontend && npm install
 ### 2. Configure Environment
 
 **Backend** (`backend/.env`):
+
 ```env
 PORT=5000
 NODE_ENV=development
@@ -123,6 +129,7 @@ FRONTEND_URL=http://localhost:5173
 ```
 
 **Frontend** (`frontend/.env`):
+
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
@@ -149,36 +156,36 @@ cd frontend && npm run dev
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed hosting instructions.
 
-| Service | Platform | Root Directory |
-|---------|----------|----------------|
-| Frontend | Vercel | `frontend` |
-| Backend | Render | `backend` |
+| Service  | Platform | Root Directory |
+| -------- | -------- | -------------- |
+| Frontend | Vercel   | `frontend`     |
+| Backend  | Render   | `backend`      |
 
 ## API Reference
 
 ### Public Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/rooms` | List available rooms |
-| GET | `/api/rooms/:id` | Get room details |
-| POST | `/api/bookings` | Create booking |
-| POST | `/api/bookings/confirm` | Confirm with code |
-| POST | `/api/bookings/send-receipt` | Email receipt |
+| Method | Endpoint                     | Description          |
+| ------ | ---------------------------- | -------------------- |
+| GET    | `/api/rooms`                 | List available rooms |
+| GET    | `/api/rooms/:id`             | Get room details     |
+| POST   | `/api/bookings`              | Create booking       |
+| POST   | `/api/bookings/confirm`      | Confirm with code    |
+| POST   | `/api/bookings/send-receipt` | Email receipt        |
 
 ### Admin Endpoints (Protected)
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/admin/login` | Admin login |
-| GET | `/api/admin/dashboard` | Dashboard stats |
-| GET | `/api/admin/rooms` | List all rooms |
-| POST | `/api/admin/rooms` | Create room |
-| PUT | `/api/admin/rooms/:id` | Update room |
-| DELETE | `/api/admin/rooms/:id` | Delete room |
-| PATCH | `/api/admin/rooms/:id/discount` | Toggle discount |
-| GET | `/api/admin/bookings` | List bookings |
-| PATCH | `/api/admin/bookings/:id/confirm` | Confirm booking |
+| Method | Endpoint                          | Description     |
+| ------ | --------------------------------- | --------------- |
+| POST   | `/api/admin/login`                | Admin login     |
+| GET    | `/api/admin/dashboard`            | Dashboard stats |
+| GET    | `/api/admin/rooms`                | List all rooms  |
+| POST   | `/api/admin/rooms`                | Create room     |
+| PUT    | `/api/admin/rooms/:id`            | Update room     |
+| DELETE | `/api/admin/rooms/:id`            | Delete room     |
+| PATCH  | `/api/admin/rooms/:id/discount`   | Toggle discount |
+| GET    | `/api/admin/bookings`             | List bookings   |
+| PATCH  | `/api/admin/bookings/:id/confirm` | Confirm booking |
 
 ## Default Admin Login
 
