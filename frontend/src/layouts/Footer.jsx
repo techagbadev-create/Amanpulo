@@ -13,9 +13,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <h3 className="font-serif text-2xl tracking-[0.1em] mb-4">
-              AMANPULO
-            </h3>
+            <div className="flex items-center gap-2 mb-4">
+              <img
+                src="/logo.png"
+                alt="Amanpulo Resort"
+                className="h-8 w-auto brightness-0 invert"
+              />
+              <h3 className="font-serif text-2xl tracking-[0.1em]">AMANPULO</h3>
+            </div>
             <p className="text-sand-300 text-sm leading-relaxed">
               A private island paradise in the Philippines, where luxury meets
               nature in perfect harmony.
@@ -54,7 +59,8 @@ export function Footer() {
             <ul className="space-y-3 text-sand-300 text-sm">
               <li>Pamalican Island</li>
               <li>Palawan, Philippines</li>
-              <li className="pt-2">reservations@amanpulo.com</li>
+              <li className="pt-2">reservation@amanpuloresort.com</li>
+              <li>amanpuloresort.com</li>
               <li>+63 2 8976 5200</li>
             </ul>
           </div>
@@ -69,7 +75,7 @@ export function Footer() {
               reservation and travel arrangements.
             </p>
             <a
-              href="mailto:reservations@amanpulo.com"
+              href="mailto:reservation@amanpuloresort.com"
               className="inline-block border border-white/30 px-6 py-2 text-sm uppercase tracking-wider hover:bg-white hover:text-sand-900 transition-all"
             >
               Contact Us

@@ -181,7 +181,8 @@ export const sendBookingConfirmationEmail = async (booking, room) => {
           <div class="contact">
             <p><strong>Need assistance?</strong></p>
             <p>Contact our concierge team at any time.</p>
-            <p>Email: reservations@amanpulo.com</p>
+            <p>Email: reservation@amanpuloresort.com</p>
+            <p>Website: amanpuloresort.com</p>
           </div>
         </div>
         
@@ -439,7 +440,8 @@ export const sendReceiptEmail = async (booking, room, pdfData) => {
         
         <div class="footer">
           <p><strong>Need assistance?</strong></p>
-          <p>Email: reservations@amanpulo.com</p>
+          <p>Email: reservation@amanpuloresort.com</p>
+          <p>Website: amanpuloresort.com</p>
           <p>Phone: +63 (2) 8976 5200</p>
           <p style="margin-top: 20px; color: #b0a89a;">
             © ${new Date().getFullYear()} Amanpulo Resort. All rights reserved.

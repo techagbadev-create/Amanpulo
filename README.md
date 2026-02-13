@@ -1,52 +1,62 @@
-# Amanpulo Reservation System
+# Amanpulo Resort - Reservation System
 
-A luxury hotel reservation system for Amanpulo Private Island Resort, built with the MERN stack. Features a premium booking experience with manual payment verification, admin dashboard, PDF receipt generation, and live chat support.
+<div align="center">
+  <img src="frontend/public/logo.png" alt="Amanpulo Resort Logo" width="120" />
+  
+  **A luxury hotel reservation system for Amanpulo Private Island Resort**
+  
+  🌐 [amanpuloresort.com](https://amanpuloresort.com) | ✉️ reservation@amanpuloresort.com
+</div>
+
+---
+
+## Overview
+
+A full-stack MERN reservation system featuring a premium booking experience with manual payment verification, admin dashboard, PDF receipt generation, email confirmations, and live chat support.
+
+## Live Demo
+
+- **Website**: [amanpuloresort.com](https://amanpuloresort.com)
+- **Frontend**: Hosted on Vercel
+- **Backend API**: Hosted on Render
 
 ## Tech Stack
 
 ### Frontend
-
-- **React 19** - UI library
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Utility-first styling with custom sand/gold palette
-- **Zustand** - State management
+- **React 19** + **Vite** - Modern build tooling
+- **Tailwind CSS** - Custom sand/gold luxury palette
+- **Zustand** - Lightweight state management
 - **React Router v7** - Client-side routing
 - **Radix UI** - Accessible UI primitives
 - **jsPDF + html2canvas** - PDF receipt generation
-- **Sonner** - Toast notifications
 - **Lucide React** - Icons
-- **date-fns** - Date utilities
+- **Sonner** - Toast notifications
 
 ### Backend
-
-- **Node.js + Express** - Server framework
-- **MongoDB + Mongoose** - Database and ODM
+- **Node.js + Express** - REST API server
+- **MongoDB + Mongoose** - Database & ODM
 - **JWT** - Admin authentication
-- **bcryptjs** - Password hashing
 - **Nodemailer** - Email service with PDF attachments
-- **Helmet** - Security headers
-- **Morgan** - Request logging
+- **bcryptjs** - Password hashing
 
 ## Features
 
-### Guest Features
-
-- Browse luxury villas and casitas
+### 🏨 Guest Features
+- Browse luxury villas and casitas with stunning imagery
 - Real-time availability checking
-- Date selection with calendar picker
-- Guest count management
-- Booking with manual payment verification flow
-- PDF receipt download
+- Interactive date picker with calendar
+- Flexible guest count management
+- Secure booking with verification code flow
+- Downloadable PDF receipts
 - Email confirmation with receipt attachment
 - Smartsupp live chat support
 
-### Admin Features
-
-- Secure JWT authentication
-- Dashboard with booking statistics
-- Room management (CRUD)
+### 👑 Admin Features
+- Secure JWT-based authentication
+- Dashboard with booking analytics
+- Complete room management (CRUD)
 - Seasonal discount configuration
-- Booking management and verification
+- Booking management & verification
 - Manual payment code confirmation
 
 ## Project Structure
@@ -54,160 +64,123 @@ A luxury hotel reservation system for Amanpulo Private Island Resort, built with
 ```
 Amanpulo/
 ├── backend/
-│   ├── config/           # Database configuration
+│   ├── config/           # Database & constants
 │   ├── controllers/      # Route handlers
-│   ├── middleware/       # Auth middleware
+│   ├── middleware/       # Auth & validation
 │   ├── models/           # Mongoose schemas
-│   │   ├── Admin.js
-│   │   ├── Booking.js
-│   │   └── Room.js
-│   ├── routes/           # API routes
+│   ├── routes/           # API endpoints
 │   ├── utils/            # Email service, seeders
-│   └── server.js         # Entry point
+│   └── server.js
 │
 ├── frontend/
-│   ├── public/           # Static assets
+│   ├── public/           # Static assets, logo, SEO files
 │   └── src/
-│       ├── components/   # Reusable UI components
-│       │   ├── ui/       # Shadcn-style components
-│       │   ├── LiveSupport.jsx
-│       │   └── Receipt.jsx
-│       ├── layouts/      # Page layouts
-│       ├── lib/          # Utilities (pdfGenerator, utils)
+│       ├── components/   # UI components & Receipt
+│       ├── layouts/      # Header, Footer, AdminLayout
+│       ├── lib/          # PDF generator, utilities
 │       ├── pages/        # Route pages
-│       │   ├── admin/    # Admin dashboard pages
-│       │   └── auth/     # Login page
-│       ├── services/     # API service functions
+│       ├── services/     # API service layer
 │       └── store/        # Zustand stores
 │
+├── DEPLOYMENT.md         # Hosting guide
 └── README.md
 ```
 
-## Installation
+## Quick Start
 
 ### Prerequisites
-
 - Node.js v18+
 - MongoDB (local or Atlas)
 - npm or yarn
 
-### 1. Clone the Repository
+### 1. Clone & Install
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/RabbitDaCoder/Amanpulo.git
 cd Amanpulo
+
+# Backend
+cd backend && npm install
+
+# Frontend
+cd ../frontend && npm install
 ```
 
-### 2. Backend Setup
+### 2. Configure Environment
 
-```bash
-cd backend
-npm install
-```
-
-Create `.env` file from example:
-
-```bash
-cp .env.example .env
-```
-
-Configure environment variables:
-
+**Backend** (`backend/.env`):
 ```env
 PORT=5000
 NODE_ENV=development
-MONGODB_URI=mongodb://localhost:27017/amanpulo_reservation
+MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_secure_jwt_secret
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
-EMAIL_FROM="Amanpulo Reservation <noreply@amanpulo.com>"
-FRONTEND_URL=http://localhost:5174
+EMAIL_PASS=your_gmail_app_password
+EMAIL_FROM="Amanpulo Reservation <reservation@amanpuloresort.com>"
+FRONTEND_URL=http://localhost:5173
 ```
 
-Seed the database:
-
-```bash
-npm run seed:admin   # Creates admin user
-npm run seed:rooms   # Seeds room data
-```
-
-### 3. Frontend Setup
-
-```bash
-cd frontend
-npm install
-```
-
-Create `.env` file:
-
-```bash
-cp .env.example .env
-```
-
-Configure:
-
+**Frontend** (`frontend/.env`):
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
-## Running the Application
-
-### Development Mode
-
-**Backend** (runs on port 5000):
+### 3. Seed Database
 
 ```bash
 cd backend
-npm run dev
+npm run seed:admin   # Creates admin user
+npm run seed:rooms   # Seeds room data
 ```
 
-**Frontend** (runs on port 5174):
+### 4. Run Development Servers
 
 ```bash
-cd frontend
-npm run dev
+# Terminal 1 - Backend (port 5000)
+cd backend && npm run dev
+
+# Terminal 2 - Frontend (port 5173)
+cd frontend && npm run dev
 ```
 
-### Production Build
+## Deployment
 
-```bash
-# Frontend
-cd frontend
-npm run build
-npm run preview
-```
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed hosting instructions.
 
-## API Endpoints
+| Service | Platform | Root Directory |
+|---------|----------|----------------|
+| Frontend | Vercel | `frontend` |
+| Backend | Render | `backend` |
 
-### Public Routes
+## API Reference
 
-| Method | Endpoint                     | Description               |
-| ------ | ---------------------------- | ------------------------- |
-| GET    | `/api/rooms`                 | Get all available rooms   |
-| GET    | `/api/rooms/:id`             | Get room details          |
-| POST   | `/api/bookings`              | Create new booking        |
-| POST   | `/api/bookings/confirm`      | Confirm booking with code |
-| POST   | `/api/bookings/send-receipt` | Send receipt email        |
+### Public Endpoints
 
-### Admin Routes (Protected)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/rooms` | List available rooms |
+| GET | `/api/rooms/:id` | Get room details |
+| POST | `/api/bookings` | Create booking |
+| POST | `/api/bookings/confirm` | Confirm with code |
+| POST | `/api/bookings/send-receipt` | Email receipt |
 
-| Method | Endpoint                          | Description      |
-| ------ | --------------------------------- | ---------------- |
-| POST   | `/api/admin/login`                | Admin login      |
-| GET    | `/api/admin/dashboard`            | Dashboard stats  |
-| GET    | `/api/admin/rooms`                | Get all rooms    |
-| POST   | `/api/admin/rooms`                | Create room      |
-| PUT    | `/api/admin/rooms/:id`            | Update room      |
-| DELETE | `/api/admin/rooms/:id`            | Delete room      |
-| PATCH  | `/api/admin/rooms/:id/discount`   | Toggle discount  |
-| GET    | `/api/admin/bookings`             | Get all bookings |
-| PATCH  | `/api/admin/bookings/:id/confirm` | Confirm booking  |
+### Admin Endpoints (Protected)
 
-## Admin Credentials
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/admin/login` | Admin login |
+| GET | `/api/admin/dashboard` | Dashboard stats |
+| GET | `/api/admin/rooms` | List all rooms |
+| POST | `/api/admin/rooms` | Create room |
+| PUT | `/api/admin/rooms/:id` | Update room |
+| DELETE | `/api/admin/rooms/:id` | Delete room |
+| PATCH | `/api/admin/rooms/:id/discount` | Toggle discount |
+| GET | `/api/admin/bookings` | List bookings |
+| PATCH | `/api/admin/bookings/:id/confirm` | Confirm booking |
 
-Default admin account (created via seed):
+## Default Admin Login
 
 ```
 Email: owner@example.com
@@ -216,33 +189,28 @@ Password: Passw0rd!
 
 ## Booking Flow
 
-1. **Guest selects room** → Browse rooms, view details
-2. **Guest enters dates** → Calendar picker, availability check
-3. **Guest fills details** → Name, email, phone
-4. **Booking created** → System generates verification code
-5. **Admin sends code** → Via chat or other channel
-6. **Guest enters code** → On checkout page
-7. **Booking confirmed** → Receipt generated & emailed
+1. **Browse Rooms** → Guest explores available accommodations
+2. **Select Dates** → Calendar picker with availability check
+3. **Enter Details** → Guest information form
+4. **Create Booking** → System generates verification code
+5. **Admin Verification** → Code sent via chat/email
+6. **Confirm Booking** → Guest enters code
+7. **Receive Receipt** → PDF generated & emailed
 
-## Currency
+## SEO & Performance
 
-All prices are in **Philippine Peso (PHP)** with `₱` symbol.
+- Optimized meta tags & Open Graph
+- JSON-LD structured data (Schema.org)
+- Sitemap & robots.txt
+- PWA manifest
+- Preconnect for fonts
+- Responsive images
 
-## Live Chat Integration
+## Contact
 
-The system integrates **Smartsupp** live chat for customer support:
-
-- Auto-opens on checkout page
-- Floating widget on all pages
-- Key: `9f40ed644a4b74b5b3481aa3dfd33590a65b6bea`
-
-## Email Configuration
-
-For Gmail, use an [App Password](https://support.google.com/accounts/answer/185833):
-
-1. Enable 2-Step Verification
-2. Generate App Password
-3. Use in `EMAIL_PASS` env variable
+- **Website**: [amanpuloresort.com](https://amanpuloresort.com)
+- **Email**: reservation@amanpuloresort.com
+- **Location**: Pamalican Island, Palawan, Philippines
 
 ## License
 
@@ -250,4 +218,6 @@ ISC
 
 ---
 
-Built with ❤️ by RabbitDaCoder
+<div align="center">
+  Built with ❤️ by RabbitDaCoder
+</div>

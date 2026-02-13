@@ -89,6 +89,13 @@ export const Receipt = forwardRef(function Receipt(
         {/* Header */}
         <header className="text-center border-b-2 border-[#d4c5a9] pb-6 mb-8">
           {/* Logo / Brand */}
+          <div className="flex justify-center mb-2">
+            <img
+              src="/logo.png"
+              alt="Amanpulo Resort"
+              className="h-12 w-auto"
+            />
+          </div>
           <h1
             className="text-3xl tracking-[0.2em] text-[#2c2a26] mb-2"
             style={{ fontFamily: "'Playfair Display', serif" }}
@@ -100,6 +107,12 @@ export const Receipt = forwardRef(function Receipt(
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
             Private Island Resort • Philippines
+          </p>
+          <p
+            className="text-xs text-[#8b7355] mt-1"
+            style={{ fontFamily: "'Inter', sans-serif" }}
+          >
+            amanpuloresort.com
           </p>
 
           {/* Confirmation Title */}
@@ -356,7 +369,10 @@ export const Receipt = forwardRef(function Receipt(
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
             <p>
-              <strong>Email:</strong> reservations@amanpulo.com
+              <strong>Email:</strong> reservation@amanpuloresort.com
+            </p>
+            <p>
+              <strong>Website:</strong> amanpuloresort.com
             </p>
             <p>
               <strong>Phone:</strong> +63 (2) 8976 5200

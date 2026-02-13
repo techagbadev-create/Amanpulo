@@ -40,7 +40,8 @@ function NavContent({ pathname, onNavClick, onLogout }) {
     <div className="flex flex-col h-full">
       {/* Logo */}
       <div className="p-6">
-        <Link to="/owner" className="flex items-center">
+        <Link to="/owner" className="flex items-center gap-2">
+          <img src="/logo.png" alt="Amanpulo Resort" className="h-8 w-auto" />
           <span className="font-serif text-xl tracking-[0.1em] text-sand-900">
             AMANPULO
           </span>

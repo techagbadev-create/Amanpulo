@@ -1,0 +1,12 @@
+# Robots.txt for Amanpulo Resort
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://amanpuloresort.com/sitemap.xml
+
+# Disallow admin pages
+Disallow: /owner
+Disallow: /owner/*
+Disallow: /admin
+Disallow: /admin/*

@@ -26,7 +26,12 @@ export function Header() {
       <div className="container-luxury">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center gap-2">
+            <img
+              src="/logo.png"
+              alt="Amanpulo Resort"
+              className="h-10 w-auto"
+            />
             <span className="font-serif text-2xl tracking-[0.1em] text-sand-900">
               AMANPULO
             </span>

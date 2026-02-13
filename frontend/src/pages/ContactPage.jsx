@@ -57,7 +57,7 @@ export function ContactPage() {
     {
       icon: Mail,
       title: "Email",
-      details: ["reservations@amanpulo.com", "info@amanpulo.com"],
+      details: ["reservation@amanpuloresort.com"],
     },
     {
       icon: Clock,

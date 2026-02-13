@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-
+import philippinesMap from "@/assets/aman-map-amanpulo.jpeg";
 /**
  * About page - Amanpulo story and location
  */
@@ -118,7 +118,7 @@ export function AboutPage() {
             </div>
             <div className="relative">
               <img
-                src="/map-philippines.png"
+                src={philippinesMap}
                 alt="Amanpulo Location Map - Philippines"
                 className="w-full rounded-lg shadow-lg"
               />

@@ -57,6 +57,11 @@ export function LoginPage() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
+          <img
+            src="/logo.png"
+            alt="Amanpulo Resort"
+            className="h-16 w-auto mx-auto mb-4"
+          />
           <h1 className="font-serif text-3xl tracking-[0.1em] text-sand-900 mb-2">
             AMANPULO
           </h1>
