@@ -13,6 +13,10 @@ import {
 import Room from "../models/Room.js";
 import { asyncHandler } from "../middleware/errorMiddleware.js";
 import { protect } from "../middleware/authMiddleware.js";
+import {
+  upload,
+  uploadImagesToCloudinary,
+} from "../middleware/uploadMiddleware.js";
 
 const router = express.Router();
 
@@ -43,8 +47,23 @@ router.get(
     });
   }),
 );
-router.post("/rooms", createRoom);
-router.put("/rooms/:id", updateRoom);
+
+// Create room with image upload support
+router.post(
+  "/rooms",
+  upload.array("images", 10),
+  uploadImagesToCloudinary,
+  createRoom,
+);
+
+// Update room with image upload support
+router.put(
+  "/rooms/:id",
+  upload.array("images", 10),
+  uploadImagesToCloudinary,
+  updateRoom,
+);
+
 router.delete("/rooms/:id", deleteRoom);
 router.patch("/rooms/:id/discount", toggleDiscount);
 

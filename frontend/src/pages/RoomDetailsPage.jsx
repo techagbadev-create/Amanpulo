@@ -109,59 +109,83 @@ export function RoomDetailsPage() {
   return (
     <div className="min-h-screen bg-sand-50">
       {/* Image Gallery */}
-      <section className="relative h-[60vh] min-h-[400px] bg-black">
-        <img
-          src={
-            room.images?.[currentImageIndex] ||
-            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1920"
-          }
-          alt={room.name}
-          className="w-full h-full object-cover"
-        />
+      <section className="relative bg-black">
+        {/* Main Image */}
+        <div className="relative h-[50vh] min-h-[350px] lg:h-[60vh]">
+          <img
+            src={
+              room.images?.[currentImageIndex] ||
+              "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1920"
+            }
+            alt={room.name}
+            className="w-full h-full object-cover"
+          />
 
-        {room.images?.length > 1 && (
-          <>
-            <button
-              onClick={() =>
-                setCurrentImageIndex((prev) =>
-                  prev === 0 ? room.images.length - 1 : prev - 1,
-                )
-              }
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white transition-colors"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-            <button
-              onClick={() =>
-                setCurrentImageIndex((prev) =>
-                  prev === room.images.length - 1 ? 0 : prev + 1,
-                )
-              }
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white transition-colors"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </button>
+          {room.images?.length > 1 && (
+            <>
+              <button
+                onClick={() =>
+                  setCurrentImageIndex((prev) =>
+                    prev === 0 ? room.images.length - 1 : prev - 1,
+                  )
+                }
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white transition-colors"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <button
+                onClick={() =>
+                  setCurrentImageIndex((prev) =>
+                    prev === room.images.length - 1 ? 0 : prev + 1,
+                  )
+                }
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white transition-colors"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+            </>
+          )}
 
-            {/* Thumbnails */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {room.images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={cn(
-                    "w-2 h-2 rounded-full transition-colors",
-                    index === currentImageIndex ? "bg-white" : "bg-white/50",
-                  )}
-                />
-              ))}
+          {room.hasActiveDiscount && (
+            <Badge className="absolute top-4 right-4 bg-gold-500 hover:bg-gold-600 text-base px-4 py-1">
+              {room.seasonalDiscount?.percentage}% Off
+            </Badge>
+          )}
+
+          {/* Image counter */}
+          {room.images?.length > 1 && (
+            <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
+              {currentImageIndex + 1} / {room.images.length}
             </div>
-          </>
-        )}
+          )}
+        </div>
 
-        {room.hasActiveDiscount && (
-          <Badge className="absolute top-4 right-4 bg-gold-500 hover:bg-gold-600 text-base px-4 py-1">
-            {room.seasonalDiscount?.percentage}% Off
-          </Badge>
+        {/* Thumbnail Gallery */}
+        {room.images?.length > 1 && (
+          <div className="bg-sand-900/90 px-4 py-3">
+            <div className="container-luxury">
+              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                {room.images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={cn(
+                      "flex-shrink-0 w-20 h-14 lg:w-24 lg:h-16 rounded-lg overflow-hidden border-2 transition-all",
+                      index === currentImageIndex
+                        ? "border-white scale-105"
+                        : "border-transparent opacity-70 hover:opacity-100",
+                    )}
+                  >
+                    <img
+                      src={image}
+                      alt={`${room.name} - Image ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         )}
       </section>
 

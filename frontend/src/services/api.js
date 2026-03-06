@@ -9,16 +9,22 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 10000,
+  timeout: 60000, // 60 seconds for image uploads
 });
 
-// Request interceptor for auth token
+// Request interceptor for auth token and content type
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("amanpulo-token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
+    // Don't set Content-Type for FormData - let browser handle it
+    if (config.data instanceof FormData) {
+      delete config.headers["Content-Type"];
+    }
+
     return config;
   },
   (error) => {

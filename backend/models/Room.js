@@ -18,10 +18,33 @@ const roomSchema = new mongoose.Schema(
       trim: true,
       maxlength: [2000, "Description cannot exceed 2000 characters"],
     },
+    // Base price per night
+    basePrice: {
+      type: Number,
+      min: [0, "Price cannot be negative"],
+    },
+    // Legacy field - maps to basePrice for backward compatibility
     price: {
       type: Number,
-      required: [true, "Price per night is required"],
       min: [0, "Price cannot be negative"],
+    },
+    // Currency for pricing
+    currency: {
+      type: String,
+      default: "PHP",
+      enum: ["PHP", "USD"],
+    },
+    // Number of guests included in base price
+    includedGuests: {
+      type: Number,
+      default: 2,
+      min: [1, "Must include at least 1 guest"],
+    },
+    // Extra charge per additional guest
+    extraGuestPrice: {
+      type: Number,
+      default: 0,
+      min: [0, "Extra guest price cannot be negative"],
     },
     seasonalDiscount: {
       isActive: {
@@ -41,14 +64,14 @@ const roomSchema = new mongoose.Schema(
         type: Date,
       },
     },
+    // Featured image for room cards (first image in gallery)
+    featuredImage: {
+      type: String,
+    },
+    // Array of image URLs (supports unlimited images)
     images: {
       type: [String],
-      validate: {
-        validator: function (v) {
-          return v && v.length > 0;
-        },
-        message: "At least one image is required",
-      },
+      default: [],
     },
     totalRooms: {
       type: Number,
@@ -82,9 +105,31 @@ const roomSchema = new mongoose.Schema(
 );
 
 /**
+ * Pre-save middleware to manage featuredImage and backward compatibility
+ */
+roomSchema.pre("save", function (next) {
+  // Set featuredImage to first image if not set
+  if (this.images && this.images.length > 0 && !this.featuredImage) {
+    this.featuredImage = this.images[0];
+  }
+
+  // Backward compatibility: sync price with basePrice
+  if (this.basePrice && !this.price) {
+    this.price = this.basePrice;
+  }
+  if (this.price && !this.basePrice) {
+    this.basePrice = this.price;
+  }
+
+  next();
+});
+
+/**
  * Virtual: Calculate effective price considering seasonal discount
  */
 roomSchema.virtual("effectivePrice").get(function () {
+  const priceValue = this.basePrice || this.price;
+
   if (
     this.seasonalDiscount?.isActive &&
     this.seasonalDiscount?.percentage > 0
@@ -96,11 +141,11 @@ roomSchema.virtual("effectivePrice").get(function () {
     // Check if current date is within discount period
     if (startDate && endDate && now >= startDate && now <= endDate) {
       const discountAmount =
-        this.price * (this.seasonalDiscount.percentage / 100);
-      return Math.round(this.price - discountAmount);
+        priceValue * (this.seasonalDiscount.percentage / 100);
+      return Math.round(priceValue - discountAmount);
     }
   }
-  return this.price;
+  return priceValue;
 });
 
 /**
@@ -120,6 +165,7 @@ roomSchema.virtual("hasActiveDiscount").get(function () {
 
 // Indexes for efficient querying
 roomSchema.index({ name: "text", description: "text" });
+roomSchema.index({ basePrice: 1 });
 roomSchema.index({ price: 1 });
 roomSchema.index({ isActive: 1 });
 roomSchema.index({ category: 1 });
